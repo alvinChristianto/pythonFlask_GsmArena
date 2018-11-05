@@ -1,15 +1,17 @@
 from bs4 import BeautifulSoup
 import requests
 
+#x = raw_input("enter url 1 : ")
+#y = raw_input("enter url 2 : ")
+
+url1 = "https://www.gsmarena.com/panasonic_eluga_ray_530-9376.php"
+url2 = "https://www.gsmarena.com/apple_iphone_xs-9318.php"
+url3 = "https://www.gsmarena.com/apple_iphone_8_plus-8131.php"
+url = [url1, url2, url3]
+#url = [x, y]
+
 def go_live():
     l = []
-
-
-    url1 = "https://www.gsmarena.com/panasonic_eluga_ray_530-9376.php"
-    url2 = "https://www.gsmarena.com/apple_iphone_xs-9318.php"
-    url3 = "https://www.gsmarena.com/apple_iphone_8_plus-8131.php"
-    url = [url1, url2, url3]
-
 
     for x in url :
 
