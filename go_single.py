@@ -1,38 +1,41 @@
-from bs4 import BeautifulSoup
-import requests
+from bs4 import BeautifulSoup, NavigableString, Tag
+import requests, time
 
 def go_live():
-   # url = raw_input("enter single url : ")
-    url = "https://www.gsmarena.com/samsung_galaxy_a6s-9352.php"
+   # url = "https://www.gsmarena.com/samsung_galaxy_a6s-9352.php"
+    url = "https://www.gsmarena.com/samsung_galaxy_note9-9163.php"
+    #url = "https://www.gsmarena.com/asus_zenfone_max_(m1)_zb556kl-9373.php"
     l = []
-    d = { }
+    p = { }
+   
     content = requests.get(url)
     soup = BeautifulSoup(content.text, "html.parser")
     headerDiv = soup.find("div", {"class": "article-info-line page-specs light border-bottom"})
-    
-    d['1_name'] = headerDiv.find("h1").getText()
-    
+
     headerDivSpec = soup.find("div", {"id": "specs-list"})    
+
     headerTbl = headerDivSpec.find("table")        
-    headerTr1 =  headerTbl.find("tr")
+    headerTr1 = headerTbl.findNext("tr")
+    p['title'] = headerDiv.find("h1").getText()
+    cnt = 1 
+    for y in range(1,13) :
+       
+        for contentCount in range(1,5) :
+           
+            try :
+                p[contentCount] = headerTr1.contents[contentCount].getText()
+   
+ 
+            except :
+                pass
+        
+       
+        headerTbl = headerTbl.findNext("table")        
+        headerTr1 = headerTr1.findNext("tr")
 
-    d['2_network'] = headerTr1.contents[1].getText()
-    d['3_network'] = headerTr1.contents[3].getText()
-    d['4_network'] = headerTr1.contents[5].getText()
-    
-    headerTblNext = headerTbl.find_next_sibling("table")
-    headerTr2 =  headerTblNext.find("tr")
-    d['5'] = headerTr2.contents[1].getText()
-    d['6'] = headerTr2.contents[3].getText()
-    d['7'] = headerTr2.contents[5].getText()
-    headerTr2Next = headerTr2.find_next_sibling("tr")
-    d['8'] = headerTr2Next.contents[1].getText()
-    d['9'] = headerTr2Next.contents[3].getText()
-    d['10'] = headerTr2.th.getText()
-    d['11'] = headerTr2.find("td", {"class" : "nfo"}).getText()
 
-
-    l.append(sorted(d.iteritems()))
+        l.append(sorted(p.iteritems()) )      
+          
     return l
 
 

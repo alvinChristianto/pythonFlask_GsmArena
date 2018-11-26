@@ -10,4 +10,4 @@ def hello_world():
     return jsonify(Products=go_live())
   # print headerText
 if __name__ == '__main__' :
-    first_app.run()
+    first_app.run(host='127.0.0.1', debug=True)
