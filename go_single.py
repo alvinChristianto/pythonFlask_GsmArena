@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4 import BeautifulSoup
 import requests, time
 
 def go_live():
@@ -34,7 +34,7 @@ def go_live():
         headerTr1 = headerTr1.findNext("tr")
 
 
-        l.append(sorted(p.iteritems()) )      
+        l.append(p)      
           
     return l
 
