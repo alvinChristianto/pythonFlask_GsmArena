@@ -34,7 +34,7 @@ def go_live():
         headerTr1 = headerTr1.findNext("tr")
 
 
-        l.append(sorted(p.iteritems()))      
+        l.append(sorted(p.items()))      
           
     return l
 
