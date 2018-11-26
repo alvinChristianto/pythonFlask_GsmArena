@@ -20,7 +20,7 @@ def go_live():
     cnt = 1 
     for y in range(1,13) :
        
-        for contentCount in range(1,5) :
+        for contentCount in range(0,5) :
            
             try :
                 p[contentCount] = headerTr1.contents[contentCount].getText()
@@ -34,7 +34,7 @@ def go_live():
         headerTr1 = headerTr1.findNext("tr")
 
 
-        l.append(p)      
+        l.append(sorted(p.iteritems()))      
           
     return l
 
